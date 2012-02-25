@@ -17,9 +17,13 @@ Async, all functions simultaneously.
 var FlowAsync = require('Supersonic').Async;
 
 new FlowAsync().push(function(ready){
-	setTimeout(function(){ ready(); }, 1000);
+	setTimeout(function(){
+		ready();
+	}, 1000);
 })).push(function(ready){
-	setTimeout(function(){ ready(); }, 2000);
+	setTimeout(function(){
+		ready();
+	}, 2000);
 }).invoke(function(){
 	console.log('all ready, after 2 seconds');
 });
@@ -31,12 +35,16 @@ All functions after each other.
 var FlowQueue = require('Supersonic').Queue;
 
 new FlowQueue().push(function(next){
-    setTimeout(function(){ next(); }, 1000);
-})).push(function(next){
-    setTimeout(function(){ next(); }, 2000);
-}).push(function(){
+	setTimeout(function(){
+		ready();
+	}, 1000);
+})).push(function(ready){
+	setTimeout(function(){
+		ready();
+	}, 2000);
+}).invoke(function(){
     console.log('all ready, after 3 seconds');
-}).next();
+});
 ```
 
 That's it!
