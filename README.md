@@ -3,6 +3,8 @@ Supersonic
 
 A small and supersonic flow-controll library for Node.js
 
+[![Build Status](https://secure.travis-ci.org/arian/LISP.js.png)](http://travis-ci.org/arian/Supersonic)
+
 ### Install
 
 	npm install Supersonic
