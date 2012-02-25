@@ -38,11 +38,11 @@ var FlowQueue = require('Supersonic').Queue;
 
 new FlowQueue().push(function(next){
 	setTimeout(function(){
-		ready();
+		next();
 	}, 1000);
-})).push(function(ready){
+})).push(function(next){
 	setTimeout(function(){
-		ready();
+		next();
 	}, 2000);
 }).invoke(function(){
     console.log('all ready, after 3 seconds');
