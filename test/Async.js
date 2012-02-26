@@ -31,5 +31,5 @@ flow.push(function(ready){
 setTimeout(function(){
 	assert.equal(1, k);
 	assert.equal(4, i);
-	color.green('✓    FlowQueue tests passed');
+	color.green('✓    FlowAsync tests passed');
 }, 350);

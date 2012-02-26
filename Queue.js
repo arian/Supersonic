@@ -20,17 +20,18 @@ module.exports = function(){
 		if (typeof ready != 'function'){
 			throw new Error('the ready argument must be a function');
 		}
-		var args = slice.call(arguments);
+
 		var nextFn = function(){
 			if (queue.length){
 				var next = queue.shift();
+				var args = [nextFn].concat(slice.call(arguments));
 				process.nextTick(function(){
 					next.apply(flow, args);
 				});
 			} else process.nextTick(ready);
 		};
-		args.unshift(nextFn);
-		nextFn();
+
+		nextFn.apply(flow, slice.call(arguments, 1));
 		return this;
 	};
 

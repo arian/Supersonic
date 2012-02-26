@@ -32,15 +32,16 @@ new FlowAsync().push(function(ready){
 ```
 
 All functions after each other.
+Additionally the Queue can pass data through the `next([arg1, arg2, …])` calls.
 
 ``` js
 var FlowQueue = require('Supersonic').Queue;
 
 new FlowQueue().push(function(next){
 	setTimeout(function(){
-		next();
+		next(3.14, 2.7218);
 	}, 1000);
-})).push(function(next){
+})).push(function(next, pi, e){
 	setTimeout(function(){
 		next();
 	}, 2000);
