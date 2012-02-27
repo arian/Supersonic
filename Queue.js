@@ -1,7 +1,10 @@
 
 var slice = Array.prototype.slice;
 
-module.exports = function(){
+module.exports = function(options){
+
+	if (options == null) options = {};
+	var tick = options.tick || process.nextTick;
 
 	var queue = [];
 
@@ -25,10 +28,10 @@ module.exports = function(){
 			if (queue.length){
 				var next = queue.shift();
 				var args = [nextFn].concat(slice.call(arguments));
-				process.nextTick(function(){
+				tick(function(){
 					next.apply(flow, args);
 				});
-			} else process.nextTick(ready);
+			} else tick(ready);
 		};
 
 		nextFn.apply(flow, slice.call(arguments, 1));

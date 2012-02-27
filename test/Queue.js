@@ -46,3 +46,21 @@ setTimeout(function(){
 	assert.equal(5, i);
 	color.green('✓    FlowQueue tests passed');
 }, 300);
+
+var l = 0;
+
+new FlowQueue({
+	tick: function(fn){
+		fn();
+	}
+}).push(function(next){
+	next(l++);
+}).push(function(next){
+	next(l++);
+}).invoke(function(){
+	l++;
+});
+
+assert.equal(l, 3);
+	color.green('✓    FlowQueue with tick option tests passed');
+
