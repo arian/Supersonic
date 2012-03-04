@@ -41,11 +41,13 @@ new FlowQueue().push(function(next){
 	setTimeout(function(){
 		next(3.14, 2.7218);
 	}, 1000);
-})).push(function(next, pi, e){
+})).push(function(next, finish, pi, e){
 	setTimeout(function(){
-		next();
+		finish(new Error);
 	}, 2000);
-}).invoke(function(){
+}).push(function(){
+	// not called because of the finish() in the previous call.
+}).invoke(function(err){
     console.log('all ready, after 3 seconds');
 });
 ```

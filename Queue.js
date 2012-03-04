@@ -25,13 +25,18 @@ module.exports = function(options){
 		}
 
 		var nextFn = function(){
-			if (queue.length){
-				var next = queue.shift();
-				var args = [nextFn].concat(slice.call(arguments));
-				tick(function(){
-					next.apply(flow, args);
-				});
-			} else tick(ready);
+			var length = queue.length;
+			var fn = length ? queue.shift() : ready;
+			var args = slice.call(arguments);
+			if (length) args = [nextFn, finish].concat(args);
+			tick(function(){
+				fn.apply(flow, args);
+			});
+		};
+
+		var finish = function(){
+			queue.length = 0;
+			nextFn.apply(this, arguments);
 		};
 
 		nextFn.apply(flow, slice.call(arguments, 1));
