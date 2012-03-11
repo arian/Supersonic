@@ -53,3 +53,26 @@ new FlowQueue().push(function(next){
 ```
 
 That's it!
+
+### Passing more data
+
+With `FlowQueue` it is possible to pass arguments. However when a lot of
+arguments have to be passed, this can be a bit tedious. Fortunately this can be
+easily avoided by putting the data on an object.
+
+``` js
+var data = {};
+new FlowAsync().push(function(ready){
+	setupDatabase(function(db){
+		data.db = db;
+		ready();
+	});
+}).push(function(ready){
+	setupCache(function(cache){
+		data.cache = cache;
+		ready();
+	});
+}).invoke(function(){
+	console.log(data);
+});
+```
