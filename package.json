@@ -1,16 +1,20 @@
 {
-	"author": "Arian Stolwijk <stolwijk.arian@gmail.com>",
-	"name": "Supersonic",
-	"description": "A small and supersonic flow-controll library",
-	"version": "0.0.4",
-	"repository": {
-		"type": "git",
-		"url": "git://github.com/arian/Supersonic.git"
-	},
-	"main": "index",
-	"scripts": {
-		"test": "node test/test"
-	},
-	"dependencies": {},
-	"devDependencies": {}
+  "author": "Arian Stolwijk <stolwijk.arian@gmail.com>",
+  "name": "Supersonic",
+  "description": "A small and supersonic flow-controll library",
+  "version": "0.0.5",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/arian/Supersonic.git"
+  },
+  "main": "index",
+  "scripts": {
+    "test": "node test/test"
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "optionalDependencies": {},
+  "engines": {
+    "node": "*"
+  }
 }
