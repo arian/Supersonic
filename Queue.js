@@ -4,7 +4,9 @@ var slice = Array.prototype.slice;
 module.exports = function(options){
 
 	if (options == null) options = {};
-	var tick = options.tick || process.nextTick;
+	var tick = options.tick;
+	if (tick == false) tick = function(fn){ fn() };
+	if (!tick) tick = process.nextTick;
 
 	var queue = [];
 

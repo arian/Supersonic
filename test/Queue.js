@@ -5,7 +5,7 @@ var color = require('./util/colorLog').colorLog;
 
 // basic tests
 
-var flow = new FlowQueue;
+var flow = new FlowQueue();
 
 var i = 0;
 var k = 0;
@@ -18,7 +18,7 @@ flow.push(function(next, finish, obj1, obj2){
 
 	assert.equal(obj1, testObject1, 'It should pass objects through next');
 	assert.equal(obj2, testObject2, 'It should pass objects through next');
-	
+
 	setTimeout(function(){
 		next(testObject1, testObject2);
 	}, 200);
@@ -27,7 +27,7 @@ flow.push(function(next, finish, obj1, obj2){
 	i++;
 	assert.equal(obj1, testObject1, 'It should pass objects through next');
 	assert.equal(obj2, testObject2, 'It should pass objects through next');
-	
+
 	flow.push(function(next){
 		i++;
 		k++;
@@ -76,9 +76,7 @@ color.green('✓    FlowQueue with tick option tests passed');
 var j = 0;
 
 new FlowQueue({
-	tick: function(fn){
-		fn();
-	}
+	tick: false
 }).push(function(next, finish){
 	j++;
 	finish(10);
