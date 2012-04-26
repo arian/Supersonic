@@ -1,7 +1,12 @@
+"use strict";
 
 var slice = Array.prototype.slice;
 
-module.exports = function(){
+module.exports = function(options){
+
+	var tick = process.nextTick;
+	if (options && options.tick) tick = options.tick;
+	else if (options && options.tick === false) tick = function(fn){ fn(); };
 
 	var queue = [];
 
@@ -25,13 +30,13 @@ module.exports = function(){
 		var readyFn = function(){
 			todo--;
 			if (queue.length) runAll(); // new items queued
-			else if (todo == 0) process.nextTick(ready);
+			else if (todo === 0) tick(ready);
 		};
 		args.unshift(readyFn);
 		var runAll = function(){
 			todo += queue.length;
 			while (queue.length) (function(next){
-				process.nextTick(function(){
+				tick(function(){
 					next.apply(flow, args);
 				});
 			})(queue.shift());
