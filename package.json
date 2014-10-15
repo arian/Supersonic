@@ -2,7 +2,7 @@
   "author": "Arian Stolwijk <stolwijk.arian@gmail.com>",
   "name": "Supersonic",
   "description": "A small and supersonic flow-controll library",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "license": "MIT",
   "repository": {
     "type": "git",
