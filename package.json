@@ -3,6 +3,7 @@
   "name": "Supersonic",
   "description": "A small and supersonic flow-controll library",
   "version": "0.0.6",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git://github.com/arian/Supersonic.git"
